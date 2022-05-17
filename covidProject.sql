@@ -1,17 +1,3 @@
--- SELECT *
--- FROM [PortfolioProject]..[covidDeaths]
--- ORDER BY 3, 4
-
-
-
--- SELECT *
--- FROM [PortfolioProject]..[covidVaccinations]
--- ORDER BY 3, 4
-
--- SELECT [location], [date], total_cases, new_cases, total_deaths, [population]
--- FROM [PortfolioProject]..[covidDeaths]
--- ORDER BY [location], [date]
-
 -- Total cases vs Total Deaths
 -- Shows likelihood of dying if you contract covid in your country
 SELECT [location], [date], total_cases, total_deaths, (CAST(total_deaths AS float)/CAST(total_cases AS float)) * 100 AS DeathPercentage
@@ -31,7 +17,6 @@ FROM [PortfolioProject]..[covidDeaths]
 GROUP BY [population], [location]
 ORDER BY InfectedPopulation DESC
 
-
 -- Highest death count per population
 SELECT [location], MAX(total_deaths) as TotalDeathCount
 FROM [PortfolioProject]..[covidDeaths]
@@ -45,7 +30,6 @@ FROM [PortfolioProject]..[covidDeaths]
 WHERE continent IS NOT NULL
 GROUP BY [continent]
 ORDER BY TotalDeathCount DESC
-
 
 -- Global Numbers
 SELECT [date], SUM(new_cases) AS WorldCases, SUM(new_deaths) AS WorldDeaths, SUM(CAST(new_deaths AS float))/SUM(new_cases)*100 AS DeathPercentage
